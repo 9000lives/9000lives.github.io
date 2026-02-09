@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <h1>My Products</h1>
+        
+
+        <style>
+            #products{
+                display: flex;
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+            .products{
+                border: 1px solid black;
+                color: black;
+                background-color: lightcoral;
+                padding: 1rem;
+                
+            }
+        </style>
+        <script>
+            async function getProducts() {
+                try {
+                    const response = await fetch("https://github.com/9000lives/9000lives.gitub.io/blob/main/db.json")
+                    const data = await response.json();
+                    console.log(data.products); 
+
+                    //DOM
+                    const productContainer = document.getElementById('products');
+
+                    for (let products of data.products) {
+
+                        const singleProduct = document.createElement('div');
+                        singleProduct.classList.add('products');
+
+                        singleProduct.innerHTML = `
+                        <h3> ${product.name} </h3>
+                        <p><strong> Type: ${product.itemType} </strong></p>
+                        <p><strong> Price: ${producte.price} </strong></p>
+                        `
+                        productContainer.appendChild(singleProduct);
+
+                    }
+                }catch(error) {
+                    console.log("Error --> " + error);
+                }
+
+            }
+
+        </script>
+    </body>
+</html>
